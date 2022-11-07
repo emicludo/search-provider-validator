@@ -14,18 +14,17 @@ app.use(bodyParser.json());
 
 
 app.get('/', async (req: Request, res: Response) => {
-  
+  if (!req.query.domain) {
+    res.send('Domain was empty or invalid')
+    return
+  }
   const response = await fetch(`https://asyncrender-eu.cludo.com/render?url=https://www.${req.query.domain}&ua=Mozilla%2F5.0%20(Windows%20NT%2010.0%3B%20cludo.com%20bot)%20AppleWebKit%2F537.36%20(KHTML%2C%20like%20Gecko)%20Chrome%2F61.0.3133.0%20Safari%2F537.36&delay=5000&waitUntil=load`)
   const htmlContent = await response.text();
   const root = parse(htmlContent);
-  /* console.log(root.querySelectorAll('button')?.toString()) */
-  /* console.log(root.querySelectorAll('button')?.some(element => element.classList.value.some(className => className.search(/search/gi) != -1))) */  /*  contains('search-button'))); */
-  /*   console.log(root.querySelector('div')?.toString()); */
-  //Basic solution: Contains search
-  /* const re = /search/gi; */
   const buttonQuery = root.querySelectorAll('button')?.some(element => element.classList.value.some(className => className.search(/search/gi) != -1))
   const divQuery = root.querySelectorAll('div')?.some(element => element.classList.value.some(className => className.search(/search/gi) != -1))
-  const contains = buttonQuery || divQuery
+  const inputQuery = root.querySelectorAll('input')?.some(element => element.classList.value.some(className => className.search(/search/gi) != -1))
+  const contains = buttonQuery || divQuery || inputQuery
   if (contains) {
     res.send(true)
   } else {
@@ -35,7 +34,7 @@ app.get('/', async (req: Request, res: Response) => {
   //To do:
   //1. Isolate css classes and look for search
   /* 
-  2. Use criteria from the exploration:
+  2. Use criteria from the exploration. These are some observations:
 
   General
     - "Søg" / "Search" / etc, as placeholder of an <input />
@@ -81,8 +80,6 @@ app.get('/', async (req: Request, res: Response) => {
 app.listen(port, function () {
   console.log(`App is listening on port ${port} !`)
 })
-
-
 
 function logger(request: express.Request, response: express.Response, next: () => void) {
   console.log(`${new Date().toISOString()}: ${request.method} request received on endpoint:  ${request.path}`);
