@@ -1,0 +1,31 @@
+{
+  "root": true,
+  "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": { "project": ["./tsconfig.json"] },
+  "plugins": [
+      "@typescript-eslint"
+  ],
+  "rules": {
+      "@typescript-eslint/strict-boolean-expressions": [
+          2,
+          {
+              "allowString" : false,
+              "allowNumber" : false
+          }
+      ],
+      "indent": ["error", 2],
+      "no-console": "off",
+      "quotes": ["warn", "single"],
+      "object-curly-spacing": ["warn", "always", { "arraysInObjects": true, "objectsInObjects": true }],
+      "comma-spacing": ["error", { "before": false, "after": true }],
+      "comma-style": ["error", "last"],
+      "array-bracket-spacing": ["error", "never"],
+      "no-multi-spaces": "warn"
+  },
+  
+  "ignorePatterns": ["src/**/*.test.ts", "src/frontend/generated/*"]
+}
