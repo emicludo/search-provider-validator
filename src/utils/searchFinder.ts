@@ -6,7 +6,7 @@ class SearchFinder {
     const divQuery = html.querySelectorAll('div')?.some(element => element.classList.value.some(className => className.search(/search/gi) != -1));
     const inputQuery = html.querySelectorAll('input')?.some(element => element.classList.value.some(className => className.search(/search/gi) != -1));
     
-    const contains = (Boolean(buttonQuery)) || (Boolean(divQuery)) || (Boolean(inputQuery));
+    const contains = buttonQuery || divQuery || inputQuery;
     return contains
   }
 }
