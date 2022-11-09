@@ -44,8 +44,8 @@ npm run lint-fix
 
 ### Use
 
-Send a GET request to http://localhost:3000 with a single query parameter `domain` where you should include the domain to query without `https://` or `www`. Here is an example of an URI:
+Send a GET request to http://localhost:3000 with a single query parameter `domain`. Here is an example of a request:
 ```
 GET http://localhost:3000/?domain=cph.dk
 ```
-The application will return true if the word `search` is contained in some html class name from a div, input or button in the domain provided
+The application will return true if the word `search` is contained in some html class name from a div, input or button in the domain provided.
