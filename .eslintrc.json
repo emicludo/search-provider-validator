@@ -17,13 +17,13 @@
               "allowNumber" : false
           }
       ],
-      "indent": ["error", 2],
+      "indent": ["warn", 2],
       "no-console": "off",
       "quotes": ["warn", "single"],
       "object-curly-spacing": ["warn", "always", { "arraysInObjects": true, "objectsInObjects": true }],
-      "comma-spacing": ["error", { "before": false, "after": true }],
-      "comma-style": ["error", "last"],
-      "array-bracket-spacing": ["error", "never"],
+      "comma-spacing": ["warn", { "before": false, "after": true }],
+      "comma-style": ["warn", "last"],
+      "array-bracket-spacing": ["warn", "never"],
       "no-multi-spaces": "warn"
   },
   
