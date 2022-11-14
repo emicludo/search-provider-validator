@@ -49,3 +49,29 @@ Send a GET request to http://localhost:3000 with a single query parameter `domai
 GET http://localhost:3000/?domain=cph.dk
 ```
 The application will return true if the word `search` is contained in some html class name from a div, input or button in the domain provided.
+
+
+### Criteria implemented to detect an existant search provider
+Presence of:
+
+`<div class=" ... ">...</div>` ---> with class name containing the string "search"
+
+or
+
+`<input class=" ... ">...</input>` ---> with class name containing the string "search"
+
+or
+
+`<button class=" ... ">...</button>` ---> with class name containing the string "search"
+
+or
+
+`<form role="search">...</form>`
+
+or
+
+`<input type="search">...</input>`
+
+or
+
+`<input placeholder="search">...</input>` ---> placeholder contains the string "search" or "søg" or "buscar"
